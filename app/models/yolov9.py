@@ -8,15 +8,14 @@ def load_model():
 def detect_corrosion(image_bytes: bytes) -> dict:
     model = load_model()
 
-    # Convertir l'image en format OpenCV
     nparr = np.frombuffer(image_bytes, np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
     results = model(img)
 
-    bboxes = results.xyxy[0].numpy()  # Format: [xmin, ymin, xmax, ymax, confidence, class]
+    bboxes = results.xyxy[0].numpy()  #  [xmin, ymin, xmax, ymax, confidence, class]
 
-    corrosion_results = [box for box in bboxes if box[5] == 0]  #classe 0 = corrosion
+    corrosion_results = [box for box in bboxes if box[5] == 1]  #class 1 = Rust
 
     return {
         "bboxes": [box[:4].tolist() for box in corrosion_results],

@@ -31,7 +31,7 @@ async def analyze_image(file: UploadFile = File(...)):
 
         # yolo
         detection_result = None
-        if classification_result["class_name"] == "corrosion" and classification_result["confidence"] > 0.5:
+        if classification_result["class_name"] == "Rust" and classification_result["confidence"] > 0.5:
             detection_result = detect_corrosion(image_bytes)
 
         return {
