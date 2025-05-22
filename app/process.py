@@ -12,8 +12,8 @@ import base64
 import os 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-YOLO_PATH= os.join(BASE_DIR,"models",'Yolo.pt')
-MOBILENET_PATH= os.join(BASE_DIR,"models",'MobileNetV3_rust_classifier.keras')
+YOLO_PATH= os.path.join(BASE_DIR,"models",'Yolo.pt')
+MOBILENET_PATH= os.path.join(BASE_DIR,"models",'MobileNetV3_rust_classifier.keras')
 
 YOLO_MODEL=YOLO(YOLO_PATH)
 MOBILENET_MODEL=load_model(MOBILENET_PATH)

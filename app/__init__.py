@@ -14,4 +14,4 @@ app.add_middleware(
 )
 
 
-from FastAPI.app import routes
+from App import routes
