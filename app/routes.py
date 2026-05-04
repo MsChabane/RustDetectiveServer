@@ -1,7 +1,7 @@
-from App import app
+from app import app
 from fastapi.responses import JSONResponse
 from fastapi import UploadFile,File
-from App.process import detect,predict
+from app.process import detect,predict
 
 SUPPORTED_FILES =['png','jpeg','jpg']
 CLASSES = {0:'no rust',1:'rust'}
