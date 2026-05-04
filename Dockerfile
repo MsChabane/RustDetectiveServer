@@ -1,17 +1,15 @@
-FROM python:3.10
-
+FROM python:3.10-slim
 
 WORKDIR /app
 
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
+    pip install --no-cache-dir -r requirements.txt
+
 COPY . .
 
+EXPOSE ${PORT:-8080}
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt  
-
-
-
-
-EXPOSE 7860
-
-CMD ["uvicorn", "App:app", "--host", "0.0.0.0", "--port", "7860"] 
+CMD ["sh", "-c", "uvicorn App:app --host 0.0.0.0 --port ${PORT:-8080}"]
